@@ -13,6 +13,10 @@ struct RepositoryListViewModel {
     
     let githubAPIClient = GithubAPIClient()
     
+    /*
+     Request repository name to Github API, then transform the result.
+     Make it observable and ready to bind to view.
+    */
     func getReposName(username: Observable<String>) -> Observable<[(String, String)]> {
         return githubAPIClient
             .findRepos(withUsername: username)

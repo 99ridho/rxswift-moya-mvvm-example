@@ -17,6 +17,10 @@ class RepositoryListViewController: UIViewController {
     let repoTableView           = UITableView()
     let repositoryListViewModel = RepositoryListViewModel()
     
+    /* 
+     make observable username property, this value obtained from
+     observable searchbar text value.
+    */ 
     var username: Observable<String> {
         return userSearchBar.rx.text
             .orEmpty
@@ -32,6 +36,10 @@ class RepositoryListViewController: UIViewController {
         setupRx()
     }
     
+    /*
+     Setup binding from view model to table view aka list view.
+     Request repository names from view model, then bind the result to list view
+    */
     func setupRx() {
         repositoryListViewModel.getReposName(username: self.username)
             .observeOn(MainScheduler.instance)

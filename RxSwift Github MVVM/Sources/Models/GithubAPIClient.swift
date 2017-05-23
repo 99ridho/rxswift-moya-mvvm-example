@@ -17,6 +17,10 @@ struct GithubAPIClient {
     
     let provider = RxMoyaProvider<Github>()
     
+    /*
+     Make API call to Github API, with observable username
+     This call is done asynchronously when username observable has been emitted their new value.
+    */
     func findRepos(withUsername username: Observable<String>) -> Observable<[GithubRepository]> {
         return username
             .flatMapLatest { uname -> Observable<[GithubRepository]?> in
